@@ -1,4 +1,4 @@
-import type { Site, Metadata, Socials } from './types'
+import type { Site, Metadata, Socials, Technologies } from './types'
 
 // ---------------------------
 // Site Information
@@ -48,5 +48,38 @@ export const SOCIALS: Socials = [
   {
     LABEL: 'linkedin',
     HREF: 'https://www.linkedin.com/in/kanevidzro',
+  },
+]
+
+export const TECHNOLOGIES: Technologies = [
+  {
+    name: 'TypeScript',
+    url: 'https://www.typescriptlang.org',
+    icon: '/icons/typescript.png',
+  },
+  {
+    name: 'Next.js',
+    url: 'https://nextjs.org',
+    icon: '/icons/nextjs.png',
+  },
+  {
+    name: 'Bun',
+    url: 'https://bun.com',
+    icon: '/icons/bun.png',
+  },
+  {
+    name: 'Hono',
+    url: 'https://hono.dev',
+    icon: '/icons/hono.png',
+  },
+  {
+    name: 'React',
+    url: 'https://react.dev',
+    icon: '/icons/react.png',
+  },
+  {
+    name: 'Tailwind CSS',
+    url: 'https://tailwindcss.com',
+    icon: '/icons/tailwind.png',
   },
 ]
