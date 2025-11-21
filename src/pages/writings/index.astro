@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import Container from '../../components/Container.astro'
+import WritingCard from '../../components/WritingCard.astro'
+import { WRITINGS } from '../../consts'
+import { getCollection } from 'astro:content'
+
+// Fetch all writings and sort newest first
+const writings = (await getCollection('writings')).sort(
+  (a, b) =>
+    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+)
+---
+
+<Layout title={WRITINGS.TITLE} description={WRITINGS.DESCRIPTION}>
+  <Container>
+    <div class="flex w-full flex-col gap-6">
+      <h1 class="w-full text-5xl font-medium tracking-tight">writings</h1>
+
+      {
+        writings.map((writing) => (
+          <WritingCard
+            title={writing.data.title}
+            date={writing.data.pubDate}
+            slug={writing.slug}
+          />
+        ))
+      }
+    </div>
+  </Container>
+</Layout>

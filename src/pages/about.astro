@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Container from '../components/Container.astro'
+import { ABOUT } from '../consts'
+---
+
+<Layout title={ABOUT.TITLE} description={ABOUT.DESCRIPTION}>
+  <Container>
+    <section>
+      <h1 class="text-3xl font-bold">{ABOUT.TITLE}</h1>
+      <p>{ABOUT.DESCRIPTION}</p>
+    </section>
+  </Container>
+</Layout>

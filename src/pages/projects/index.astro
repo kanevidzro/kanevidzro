@@ -1,0 +1,52 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { PROJECTS } from '../../consts'
+import Container from '../../components/Container.astro'
+import FormattedDate from '../../components/FormattedDate.astro'
+import { getCollection } from 'astro:content'
+
+const projects = (await getCollection('projects')).sort(
+  (a, b) =>
+    new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+)
+---
+
+<Layout title={PROJECTS.TITLE} description={PROJECTS.DESCRIPTION}>
+  <Container>
+    <section class="space-y-8">
+      <h1 class="text-3xl font-bold">Projects</h1>
+
+      <ul class="grid gap-8 md:grid-cols-2">
+        {
+          projects.map((project) => (
+            <li class="rounded-lg border p-4 transition hover:shadow-lg">
+              <a href={`/projects/${project.slug}/`} class="group block">
+                <img
+                  src={project.data.image}
+                  alt={project.data.title}
+                  class="mb-4 h-48 w-full rounded object-cover"
+                />
+                <h2 class="text-xl font-semibold group-hover:underline">
+                  {project.data.title}
+                </h2>
+                <p class="text-gray-600">{project.data.description}</p>
+                <div class="mt-2 text-sm text-gray-500">
+                  <FormattedDate date={project.data.pubDate} />
+                </div>
+                {project.data.stack && (
+                  <ul class="mt-2 flex flex-wrap gap-2">
+                    {project.data.stack.map((tech) => (
+                      <li class="rounded bg-gray-100 px-2 py-1 text-xs">
+                        {tech}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </Container>
+</Layout>

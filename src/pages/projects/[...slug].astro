@@ -1,0 +1,111 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import Container from '../../components/Container.astro'
+import FormattedDate from '../../components/FormattedDate.astro'
+import { type CollectionEntry, getCollection } from 'astro:content'
+import { SITE } from '../../consts'
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects')
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: project,
+  }))
+}
+
+type Props = CollectionEntry<'projects'>
+
+const project = Astro.props
+
+// URLs
+const projectURL = new URL(Astro.url, Astro.site).toString()
+const imageURL = new URL(project.data.image, Astro.site).toString()
+
+const { Content } = await project.render()
+---
+
+<Layout
+  title={project.data.title}
+  description={project.data.description}
+  image={imageURL}>
+  <Container>
+    <!-- CreativeWork JSON-LD -->
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'CreativeWork',
+        name: project.data.title,
+        description: project.data.description,
+        url: projectURL,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': projectURL },
+        image: imageURL,
+        datePublished: project.data.pubDate,
+        dateModified: project.data.pubDate,
+        author: {
+          '@type': 'Person',
+          '@id': `${Astro.site}#me`,
+          name: SITE.NAME,
+          url: Astro.site,
+          image: `${Astro.site}assets/profile.png`,
+        },
+        keywords: project.data.stack,
+      })}
+    />
+
+    <header class="mb-6">
+      <h1 class="text-4xl font-bold">{project.data.title}</h1>
+      <div class="flex gap-2 text-sm text-gray-500">
+        <FormattedDate date={project.data.pubDate} />
+      </div>
+
+      {
+        project.data.stack && (
+          <ul class="mt-2 flex flex-wrap gap-2">
+            {project.data.stack.map((tech) => (
+              <li class="rounded bg-gray-100 px-2 py-1 text-xs">{tech}</li>
+            ))}
+          </ul>
+        )
+      }
+
+      <img
+        src={imageURL}
+        alt={project.data.title}
+        class="mt-4 w-full rounded object-cover"
+      />
+
+      <p class="mt-4 text-gray-700">{project.data.description}</p>
+
+      <div class="mt-4 flex gap-4">
+        {
+          project.data.repo && (
+            <a
+              href={project.data.repo}
+              class="text-sm text-blue-600 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer">
+              Repo
+            </a>
+          )
+        }
+        {
+          project.data.demo && (
+            <a
+              href={project.data.demo}
+              class="text-sm text-blue-600 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer">
+              Demo
+            </a>
+          )
+        }
+      </div>
+    </header>
+
+    <article class="prose mt-8 max-w-none">
+      <Content />
+    </article>
+  </Container>
+</Layout>

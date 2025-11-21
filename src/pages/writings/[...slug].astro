@@ -1,0 +1,97 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import Container from '../../components/Container.astro'
+import FormattedDate from '../../components/FormattedDate.astro'
+import { readingTime } from '../../lib/utils'
+import { type CollectionEntry, getCollection } from 'astro:content'
+import { SITE } from '../../consts'
+
+export async function getStaticPaths() {
+  const writings = (await getCollection('writings')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  )
+
+  return writings.map((post) => ({
+    params: { slug: post.slug },
+    props: post,
+  }))
+}
+
+type Props = CollectionEntry<'writings'>
+
+const post = Astro.props
+
+// URLs
+const postURL = new URL(Astro.url, Astro.site).toString()
+
+// Cover image
+const coverImage = new URL(`/og/${post.slug}.png`, Astro.site).toString()
+
+// Word count
+const wordCount = post.body.split(/\s+/).length
+
+const { Content } = await post.render()
+
+const { pubDate, tags, title, description } = post.data
+---
+
+<Layout title={title} description={description} image={coverImage}>
+  <Container>
+    <!-- JSON-LD Schema for Blog Post -->
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: title,
+        description: description,
+        url: postURL,
+        mainEntityOfPage: {
+          '@type': 'WebPage',
+          '@id': postURL,
+        },
+        image: coverImage,
+        datePublished: pubDate,
+        dateModified: pubDate,
+        author: {
+          '@type': 'Person',
+          '@id': `${Astro.site}#me`,
+          name: SITE.NAME,
+          url: Astro.site,
+          image: `${Astro.site}assets/profile.png`,
+        },
+        keywords: tags,
+        wordCount,
+        text: post.body,
+        isPartOf: {
+          '@type': 'Blog',
+          name: SITE.NAME,
+          url: `${Astro.site}blog`,
+        },
+      })}
+    />
+
+    <header class="mb-6">
+      <h1 class="text-4xl font-bold">{title}</h1>
+      <div class="flex gap-2 text-sm text-gray-500">
+        <FormattedDate date={pubDate} />
+        <span>•</span>
+        <span>{readingTime(post.body)}</span>
+      </div>
+      {
+        tags && (
+          <ul class="mt-2 flex gap-2">
+            {tags.map((tag) => (
+              <li class="rounded bg-gray-100 px-2 py-1 text-xs">{tag}</li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+
+    <article>
+      <Content />
+    </article>
+  </Container>
+</Layout>
