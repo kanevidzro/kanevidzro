@@ -1,1 +1,37 @@
 @import 'tailwindcss';
+
+@font-face {
+  font-family: 'UncutSans';
+  src:
+    local('UncutSans'),
+    url('/fonts/UncutSans-Bold.woff') format('woff');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'UncutSans';
+  src:
+    local('UncutSans'),
+    url('/fonts/UncutSans-Semibold.woff') format('woff');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'UncutSans';
+  src:
+    local('UncutSans'),
+    url('/fonts/UncutSans-Medium.woff') format('woff');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'UncutSans';
+  src:
+    local('UncutSans'),
+    url('/fonts/UncutSans-Regular.woff') format('woff');
+  font-weight: 400;
+}
+
+body {
+  font-family: 'UncutSans', sans-serif;
+}
