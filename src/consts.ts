@@ -23,7 +23,7 @@ export const WRITINGS: Metadata = {
 }
 
 export const ABOUT: Metadata = {
-  TITLE: 'About Me',
+  TITLE: 'About me',
   DESCRIPTION: 'A glimpse into my work, passions, and technical contributions.',
 }
 
