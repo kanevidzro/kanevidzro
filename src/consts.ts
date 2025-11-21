@@ -14,23 +14,23 @@ export const SITE: Site = {
 // ---------------------------
 export const HOME: Metadata = {
   TITLE: 'Home',
-  DESCRIPTION: 'Sharing projects, experiments, and thoughts from my journey.',
+  DESCRIPTION: 'Hi, I\'m Kane Vidzro, a software developer focused on architecting and building robust SaaS solutions, particularly for empowering African businesses.',
 }
 
 export const WRITINGS: Metadata = {
   TITLE: 'Writings',
-  DESCRIPTION: 'A collection of articles on topics I am passionate about.',
+  DESCRIPTION: 'A collection of articles on topics I am passionatet.',
 }
 
 export const ABOUT: Metadata = {
   TITLE: 'About me',
-  DESCRIPTION: 'A glimpse into my work, passions, and technical contributions.',
+  DESCRIPTION: 'I don\'t just write code; I build solutions. Know who I am and my mission to empower African businesses through scalable SaaS development.',
 }
 
 export const PROJECTS: Metadata = {
   TITLE: 'Projects',
   DESCRIPTION:
-    'A collection of my projects, with links to repositories and demos.',
+    'Real-world solutions I\'ve engineered. Browse the SaaS products and tools I\'ve built to solve challenges, complete with demos and links.',
 }
 
 // ---------------------------
