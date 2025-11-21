@@ -19,7 +19,7 @@ export const HOME: Metadata = {
 
 export const WRITINGS: Metadata = {
   TITLE: 'Writings',
-  DESCRIPTION: 'A collection of articles on topics I am passionatet.',
+  DESCRIPTION: 'Where I document my discoveries. Read my collection of articles covering engineering best practice, insights, and reflections on my life in tech.',
 }
 
 export const ABOUT: Metadata = {
