@@ -1,6 +1,15 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
+html {
+  @apply scroll-smooth;
+}
+
+body {
+  font-family: 'UncutSans', sans-serif;
+  @apply bg-white text-black dark:bg-black dark:text-white;
+}
+
 @font-face {
   font-family: 'UncutSans';
   src:
@@ -31,8 +40,4 @@
     local('UncutSans'),
     url('/fonts/UncutSans-Regular.woff') format('woff');
   font-weight: 400;
-}
-
-body {
-  font-family: 'UncutSans', sans-serif;
 }
