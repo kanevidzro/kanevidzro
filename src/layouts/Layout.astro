@@ -23,7 +23,9 @@ const { title, description, image } = Astro.props
   </head>
   <body>
     <Header />
-    <main role="main">
+    <main
+      role="main"
+      class="mx-auto my-6 flex w-full max-w-xl flex-col items-center justify-start p-4 antialiased">
       <slot />
     </main>
   </body>
