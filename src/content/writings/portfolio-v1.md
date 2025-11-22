@@ -2,7 +2,7 @@
 title: 'My Portfolio v1 Is Live'
 description: 'Just shipped the first version of my developer portfolio.'
 pubDate: 2025-11-22
-tags: ['Astro', 'Portfolio', 'Tailwind, 'Vercel']
+tags: ['Astro', 'Portfolio', 'Tailwind']
 ---
 
 Hey! My portfolio v1 is finally live 😄
