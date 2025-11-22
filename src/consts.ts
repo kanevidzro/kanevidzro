@@ -7,20 +7,20 @@ export interface MenuItem {
 
 export const menuItems: MenuItem[] = [
   {
-    label: 'sanju',
+    label: 'home',
     url: '/',
+  },
+  {
+    label: 'about',
+    url: '/about',
   },
   {
     label: 'writings',
     url: '/writings',
   },
   {
-    label: 'thoughts',
-    url: '/thoughts',
-  },
-  {
-    label: 'tools',
-    url: '/tools',
+    label: 'projects',
+    url: '/projects',
   },
 ]
 
