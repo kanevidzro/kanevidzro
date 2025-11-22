@@ -1,18 +1,18 @@
 export interface Site {
-  NAME: string;
-  TITLE: string;
-  EMAIL: string;
-  USERNAME: string;
+  NAME: string
+  TITLE: string
+  EMAIL: string
+  USERNAME: string
 }
 
 export interface Metadata {
-  TITLE: string;
-  DESCRIPTION: string;
+  TITLE: string
+  DESCRIPTION: string
 }
 
 export interface Social {
-  LABEL: string;
-  URL: string;
+  LABEL: string
+  URL: string
 }
 
-export type Socials = Social[];
+export type Socials = Social[]

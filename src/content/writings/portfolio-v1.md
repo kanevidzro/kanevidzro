@@ -11,15 +11,17 @@ I’ve been wanting to ship this for a while, so I’m happy it’s out in the w
 Built it with **Astro + Tailwind** and deployed on **Vercel** — super smooth setup.
 
 ### What I figured out while building this:
-- How to organize components better  
-- Basic SEO + accessibility stuff  
-- Fixing random bugs I caused myself 😅  
+
+- How to organize components better
+- Basic SEO + accessibility stuff
+- Fixing random bugs I caused myself 😅
 - Deploying without breaking everything (mostly)
 
 ### What’s next:
-- Dark mode (because… we all need dark mode)  
-- A nicer projects section  
-- More animations + small UI details  
+
+- Dark mode (because… we all need dark mode)
+- A nicer projects section
+- More animations + small UI details
 - Blog improvements
 
 Thanks for checking it out — more upgrades on the way.
