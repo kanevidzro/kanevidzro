@@ -1,22 +1,84 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Container from '../components/Container.astro'
-import { HOME, SITE } from '../consts' // Ensure SITE.NAME and SITE.TITLE are used
+import { HOME, SITE, SOCIALS } from '../consts'
+
+// Utility function to get the base path for social icons (optional, but good practice)
+const getIconPath = (label: string) => {
+    switch(label) {
+        case 'twitter-x': return 'M24 4.557c-.883.392-1.832.657-2.828.775 1.017-.609 1.791-1.574 2.153-2.723-.951.579-2.007.993-3.123 1.258C18.667 4.14 17.06 3 15.125 3c-3.618 0-6.574 2.955-6.574 6.573 0 .51.058 1.008.171 1.488C5.071 9.544 2.5 6.551.99 3.515c-.53.902-.83 1.947-.83 3.064 0 2.276 1.157 4.286 2.91 5.465-.27-.008-.528-.083-.758-.21v.083c0 3.193 2.274 5.867 5.297 6.463-.55.15-1.134.23-1.733.23-.423 0-.834-.041-1.233-.117.842 2.624 3.28 4.53 6.177 4.582-2.261 1.77-5.114 2.829-8.217 2.829-.533 0-1.055-.031-1.565-.091 2.936 1.886 6.4 2.983 10.137 2.983 12.164 0 18.847-10.088 18.847-18.846 0-.287-.008-.568-.018-.849.957-.692 1.79-1.558 2.459-2.545z';
+        case 'github': return 'M12 0c-6.626 0-12 5.373-12 12s5.373 12 12 12c5.29 0 9.89-3.48 11.45-8.27.18-.54.27-1.09.27-1.63 0-6.627-5.373-12-12-12zm-3.19 19.34c-.38.87-.99 1.28-1.72 1.28-1.55 0-2.82-1.37-2.82-3.05 0-1.71 1.27-3.08 2.82-3.08.73 0 1.34.41 1.72 1.28l.2.45.2-.45c.38-.87.99-1.28 1.72-1.28 1.55 0 2.82 1.37 2.82 3.08 0 1.71-1.27 3.05-2.82 3.05-.73 0-1.34-.41-1.72-1.28l-.2-.45-.2.45zM12 2.5c5.24 0 9.5 4.26 9.5 9.5s-4.26 9.5-9.5 9.5-9.5-4.26-9.5-9.5 4.26-9.5 9.5-9.5z';
+        case 'linkedin': return 'M23.953 0c.037 0 .074 0 .111 0C23.953.001 24 .001 24 .001V.001l-.047-.001c-.037 0-.074 0-.111 0zM7.5 4.75h-3v14.5h3v-14.5zm0 18h-3v-3h3v3zm6.39 0h-3v-8.5c0-4.66 6.39-4.81 6.39 0v8.5h-3v-4.5c0-2.47-1.39-3.35-3.02-3.35-1.4 0-2.38.99-2.38 2.37v5.48z';
+        default: return '';
+    }
+}
 ---
 
 <Layout title={SITE.TITLE} description={HOME.DESCRIPTION}>
   <Container>
-    <section>
+
+    <!-- 1. HERO SECTION -->
+    <section class="mb-16 pt-8 md:pt-16">
       <h1
-        class="w-full text-start text-[min(12vw,72px)] leading-[0.9] font-medium tracking-[-2px] sm:tracking-[-4px]">
+        class="w-full text-start text-[min(12vw,96px)] leading-tight font-extrabold tracking-tighter sm:tracking-[-6px]">
         {SITE.NAME} <br />
-        <span class="text-gray-500 dark:text-gray-400">
+        <span class="text-gray-400 dark:text-gray-600 font-medium text-[min(8vw,64px)] block">
           {SITE.TITLE}
         </span>
       </h1>
-      <p class="mt-6 text-xl text-gray-700 dark:text-gray-300 max-w-2xl">
-        {HOME.DESCRIPTION}
-      </p>
+      
+      <!-- Social Links Row -->
+      <div class="mt-6 flex flex-wrap gap-4">
+        {SOCIALS.map(social => (
+          <a
+            href={social.LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-center gap-2 p-2 rounded-lg bg-gray-50 hover:bg-indigo-50 dark:bg-zinc-800 dark:hover:bg-indigo-900/50 transition duration-300 transform hover:scale-[1.02]"
+            aria-label={`Visit my ${social.LABEL} profile`}
+          >
+            <svg class="w-6 h-6 text-gray-700 dark:text-gray-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d={getIconPath(social.LABEL)}/>
+            </svg>
+            <span class="text-sm font-semibold text-gray-800 dark:text-gray-100 hidden sm:inline">{social.LABEL}</span>
+          </a>
+        ))}
+      </div>
     </section>
+
+    <!-- 2. DETAILED ABOUT ME SECTION -->
+    <section class="max-w-4xl pt-8 pb-16 border-t border-gray-200 dark:border-zinc-700">
+      <h2 id="about" class="text-3xl font-bold tracking-tight mb-6 text-gray-900 dark:text-white">
+        The Architect & The Mission
+      </h2>
+      
+      <!-- Paragraph 1: Hook and Identity -->
+      <p class="mb-6 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+        As the description says, <strong class="font-semibold">{ABOUT.DESCRIPTION.slice(0, 31)}</strong>. I'm Kane Vidzro, and my journey is rooted in turning complex, real-world problems into elegant, functional, and efficient software. My focus is always on engineering robust solutions—products that truly solve pain points, rather than just delivering code.
+      </p>
+
+      <!-- Paragraph 2: African Business Focus & Entrepreneurship -->
+      <p class="mb-6 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+        My primary mission is centered on <strong class="text-indigo-600 dark:text-indigo-400">empowering African businesses</strong>. I believe that sustainable, scalable SaaS (Software as a Service) is the key to unlocking growth and efficiency across the continent. My work as an entrepreneur involves identifying these critical market gaps and architecting the technological frameworks necessary to fill them.
+      </p>
+
+      <!-- Paragraph 3: Technical Philosophy (Scalability) -->
+      <p class="mb-8 text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+        Scalability isn't just a buzzword for me—it's a core design constraint. Every system I design is built with future growth in mind, ensuring high performance and maintainability. I thrive on diving deep into **engineering best practices** and **industry analysis** (which I document extensively in my <a href="/writings" class="font-medium text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 transition">Writings</a> section) to ensure I deliver state-of-the-art products.
+      </p>
+
+      <!-- Call to Action -->
+      <div class="p-6 bg-gray-50 rounded-xl shadow-inner dark:bg-zinc-800/50">
+          <p class="text-xl font-semibold text-gray-800 dark:text-gray-100">
+              Ready to see the results?
+          </p>
+          <p class="mt-2 text-gray-600 dark:text-gray-400">
+              Check out my <a href="/projects" class="text-indigo-600 dark:text-indigo-400 font-bold hover:underline">Projects</a> to see the real-world solutions and tools I’ve engineered, or visit my <a href="/about" class="text-indigo-600 dark:text-indigo-400 font-bold hover:underline">About Me</a> page for a deeper look into my background.
+          </p>
+      </div>
+
+    </section>
+
   </Container>
 </Layout>
+
