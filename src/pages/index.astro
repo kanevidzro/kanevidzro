@@ -1,7 +1,9 @@
 ---
+// Assuming these imports and components exist in your Astro project
 import Layout from '../layouts/Layout.astro'
 import Container from '../components/Container.astro'
-import { HOME, SITE, SOCIALS } from '../consts'
+// FIX: Added ABOUT to the imports so it can be used in the section below
+import { HOME, SITE, SOCIALS, ABOUT } from '../consts' 
 
 // Utility function to get the base path for social icons (optional, but good practice)
 const getIconPath = (label: string) => {
@@ -81,4 +83,3 @@ const getIconPath = (label: string) => {
 
   </Container>
 </Layout>
-
