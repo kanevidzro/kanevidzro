@@ -1,28 +1,17 @@
 ---
-import Container from '../components/Container.astro'
-import Link from '../components/Link.astro'
-import { SITE } from '../consts'
+import HeaderLink from '../components/misc/header-link.astro'
+import ThemeSwitcher from '../components/misc/theme-switcher.astro'
+
+import { menuItems } from '../consts'
 ---
 
-<header>
-  <Container>
-    <div class="flex flex-wrap justify-between gap-y-2">
-      <Link href="/" underline={false}>
-        <div class="font-semibold">
-          {SITE.NAME}
-        </div>
-      </Link>
-      <nav class="flex gap-1">
-        <Link href="/about"> about </Link>
-        <span>
-          {`/`}
-        </span>
-        <Link href="/writings"> writings </Link>
-        <span>
-          {`/`}
-        </span>
-        <Link href="/projects"> projects </Link>
-      </nav>
-    </div>
-  </Container>
-</header>
+<div class="flex w-full flex-row items-center justify-between">
+  <div class="flex flex-row items-start gap-3 font-medium text-black">
+    {
+      menuItems.map((item) => (
+        <HeaderLink href={item.url}>{item.label}</HeaderLink>
+      ))
+    }
+  </div>
+  <ThemeSwitcher />
+</div>

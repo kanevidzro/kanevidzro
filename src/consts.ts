@@ -1,5 +1,29 @@
 import type { Site, Metadata, Socials } from './types'
 
+export interface MenuItem {
+  label: string
+  url: string
+}
+
+export const menuItems: MenuItem[] = [
+  {
+    label: 'sanju',
+    url: '/',
+  },
+  {
+    label: 'writings',
+    url: '/writings',
+  },
+  {
+    label: 'thoughts',
+    url: '/thoughts',
+  },
+  {
+    label: 'tools',
+    url: '/tools',
+  },
+]
+
 // ---------------------------
 // Site Information
 // ---------------------------
@@ -43,14 +67,14 @@ export const PROJECTS: Metadata = {
 export const SOCIALS: Socials = [
   {
     LABEL: 'twitter-x',
-    LINK: 'https://twitter.com/kanevidzro',
+    URL: 'https://twitter.com/kanevidzro',
   },
   {
     LABEL: 'github',
-    LINK: 'https://github.com/kanevidzro',
+    URL: 'https://github.com/kanevidzro',
   },
   {
     LABEL: 'linkedin',
-    LINK: 'https://www.linkedin.com/in/kanevidzro',
+    URL: 'https://www.linkedin.com/in/kanevidzro',
   },
 ]
